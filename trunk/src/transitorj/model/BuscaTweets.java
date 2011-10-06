@@ -24,6 +24,10 @@ public class BuscaTweets {
 	public BuscaTweets() {
 		twitter = new TwitterFactory().getInstance();
 	}
+	
+	public static BuscaTweets newInstance() {
+		return new BuscaTweets();
+	}
 
 	public List<Tweet> buscaPagina(int pagina, int tpp) {
 		if (tpp == 0)
