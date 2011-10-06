@@ -25,25 +25,26 @@ public class TesteModel {
 			IndexadorDeTweets indexador = new IndexadorDeTweets(
 					"/home/igorfr/workspace/twitterindex");
 			System.out.println("Criado índice.");
-			
+
 			BuscadorLocal buscadorLocal = new BuscadorLocal(
 					"/home/igorfr/workspace/twitterindex");
 			System.out.println("Criado buscador.");
-			
+
 			List<Tweet> mensagens = buscaTweets.buscaTodos();
 			System.out.println("Tweets buscados.");
-			
+
 			int indexados = indexador.indexa(mensagens);
 			System.out.println("Tweets indexados: " + indexados);
-			
-			ArrayList<LocalTweet> resultados = buscadorLocal.buscaRua("linha vermelha");
+
+			ArrayList<LocalTweet> resultados = buscadorLocal
+					.buscaRua("linha vermelha");
 			System.out.println("Resultados encontrados: " + resultados.size());
-			
+
 			for (LocalTweet t : resultados) {
 				System.out.println(t.getFromUser() + "\t" + t.getDate());
 				System.out.println(t.getText() + "\n");
 			}
-			
+
 		} catch (CorruptIndexException e) {
 			System.out.println("Problemas no arquivo de índice.");
 		} catch (IOException e) {

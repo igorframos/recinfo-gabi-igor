@@ -26,8 +26,9 @@ public class BuscaTweets {
 	}
 
 	public List<Tweet> buscaPagina(int pagina, int tpp) {
-		if (tpp == 0) tpp = TPP;
-		
+		if (tpp == 0)
+			tpp = TPP;
+
 		List<Tweet> resultados = null;
 		String busca = OPT;
 
