@@ -2,16 +2,19 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="libs/ant-1.7.1.jar"/>
-	<classpathentry kind="lib" path="libs/ant-junit-1.7.1.jar"/>
-	<classpathentry kind="lib" path="libs/junit-4.7.jar"/>
-	<classpathentry kind="lib" path="libs/lucene-core-3.3.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="libs/lucene-core-3.3.0.jar"/>
-	<classpathentry kind="lib" path="libs/lucene-test-framework-3.3.0-javadoc.jar"/>
-	<classpathentry kind="lib" path="libs/lucene-test-framework-3.3.0.jar"/>
-	<classpathentry kind="lib" path="libs/maven-ant-tasks-2.1.1.jar"/>
-	<classpathentry kind="lib" path="libs/twitter4j-core-2.2.4-javadoc.jar"/>
-	<classpathentry kind="lib" path="libs/twitter4j-core-2.2.4-sources.jar"/>
-	<classpathentry kind="lib" path="libs/twitter4j-core-2.2.4.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/ant-1.7.1.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/ant-junit-1.7.1.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/junit-4.7.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/lucene-analyzers-3.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/lucene-core-3.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/lucene-core-3.3.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/lucene-smartcn-3.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/lucene-stempel-3.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/lucene-test-framework-3.3.0.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/lucene-test-framework-3.3.0-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/maven-ant-tasks-2.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/twitter4j-core-2.2.4.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/twitter4j-core-2.2.4-javadoc.jar"/>
+	<classpathentry kind="lib" path="/home/igorfr/Dropbox/workspace/TrânsitoRJ/libs/twitter4j-core-2.2.4-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

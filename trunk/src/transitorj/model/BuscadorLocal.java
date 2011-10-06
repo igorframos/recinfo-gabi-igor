@@ -40,27 +40,29 @@ public class BuscadorLocal {
 		}
 
 		analyzer = new BrazilianAnalyzer(Version.LUCENE_33);
-		
+
 		is = new IndexSearcher(dir);
 	}
-	
-	public ArrayList<LocalTweet> buscaRua (String rua) throws ParseException, IOException {
+
+	public ArrayList<LocalTweet> buscaRua(String rua) throws ParseException,
+			IOException {
 		ArrayList<LocalTweet> mensagens = new ArrayList<LocalTweet>();
-		
-		QueryParser qParser = new QueryParser(Version.LUCENE_33, "text", analyzer);
+
+		QueryParser qParser = new QueryParser(Version.LUCENE_33, "text",
+				analyzer);
 		rua = "\"" + rua + "\"";
 		Query query = qParser.parse(rua);
 		TopDocs results = is.search(query, 100, new Sort(SortField.FIELD_DOC));
-		
+
 		for (ScoreDoc scoreDoc : results.scoreDocs) {
 			Document doc = is.doc(scoreDoc.doc);
 			String text = doc.get("text");
 			String fromUser = doc.get("fromUser");
 			String date = doc.get("date");
-			
+
 			mensagens.add(new LocalTweet(text, fromUser, date));
 		}
-		
-		return mensagens; 
+
+		return mensagens;
 	}
 }
