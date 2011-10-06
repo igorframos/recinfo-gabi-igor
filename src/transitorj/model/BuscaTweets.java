@@ -18,23 +18,21 @@ public class BuscaTweets {
 	public static final GeoLocation RJ = new GeoLocation(-22.899106, -43.208714);
 	private static final String OPT = "trânsito OR tráfego OR engarrafamento OR "
 			+ "lentidão OR fluxo OR obra OR interdita OR interditada OR "
-			+ "interdição OR faixa ";
+			+ "interdição OR faixa OR colisão OR carro OR caminhão OR "
+			+ "acidente OR ônibus";
 
-	private BuscaTweets() {
+	public BuscaTweets() {
 		twitter = new TwitterFactory().getInstance();
 	}
 
-	public static BuscaTweets newInstance() {
-		return new BuscaTweets();
-	}
-
-	public List<Tweet> buscaPagina(String rua, int pagina) {
+	public List<Tweet> buscaPagina(int pagina, int tpp) {
+		if (tpp == 0) tpp = TPP;
+		
 		List<Tweet> resultados = null;
-		rua = "\"" + rua + "\"";
-		String busca = OPT + rua;
+		String busca = OPT;
 
 		Query query = new Query(busca);
-		query.setRpp(TPP);
+		query.setRpp(tpp);
 		query.setPage(pagina);
 		query.setGeoCode(RJ, RAIO, Query.KILOMETERS);
 
@@ -48,16 +46,16 @@ public class BuscaTweets {
 		return resultados;
 	}
 
-	public List<Tweet> buscaTodos(String rua) {
+	public List<Tweet> buscaTodos() {
 		int tam = 0, pagina = 1;
-		BuscaTweets buscaTweets = new BuscaTweetsFactory().getInstance();
+		BuscaTweets buscaTweets = new BuscaTweets();
 
-		List<Tweet> resultados = buscaTweets.buscaPagina(rua, pagina);
+		List<Tweet> resultados = buscaTweets.buscaPagina(pagina, TPP);
 		tam = resultados.size();
 
 		while (tam == pagina * BuscaTweets.TPP) {
 			++pagina;
-			resultados.addAll(buscaTweets.buscaPagina(rua, pagina));
+			resultados.addAll(buscaTweets.buscaPagina(pagina, TPP));
 			tam = resultados.size();
 		}
 

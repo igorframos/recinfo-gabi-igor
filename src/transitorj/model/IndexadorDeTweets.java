@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.TokenStream;
-import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.analysis.br.BrazilianAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.index.CorruptIndexException;
@@ -35,7 +35,7 @@ public class IndexadorDeTweets {
 			throw e;
 		}
 
-		analyzer = new StandardAnalyzer(Version.LUCENE_33);
+		analyzer = new BrazilianAnalyzer(Version.LUCENE_33);
 	}
 
 	public int indexa(List<Tweet> mensagens) throws CorruptIndexException,
