@@ -71,7 +71,7 @@ public class BuscaTweets {
 		}
 
 		Collections.sort(resultados, new CompareByDate());
-		
+
 		for (Tweet t : resultados) {
 			System.out.println(t.getCreatedAt());
 		}

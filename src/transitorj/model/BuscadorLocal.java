@@ -63,9 +63,9 @@ public class BuscadorLocal {
 
 			mensagens.add(new LocalTweet(text, fromUser, date));
 		}
-		
+
 		is.close();
-		
+
 		Collections.reverse(mensagens);
 
 		return mensagens;
