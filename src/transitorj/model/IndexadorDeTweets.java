@@ -47,7 +47,7 @@ public class IndexadorDeTweets {
 		IndexWriter iw;
 		IndexWriterConfig iwc;
 		iwc = new IndexWriterConfig(Version.LUCENE_33, analyzer);
-		iwc.setOpenMode(OpenMode.CREATE);
+		iwc.setOpenMode(OpenMode.CREATE_OR_APPEND);
 		iw = new IndexWriter(dir, iwc);
 
 		for (Tweet t : mensagens) {

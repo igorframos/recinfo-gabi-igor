@@ -6,6 +6,7 @@ package transitorj.model;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.br.BrazilianAnalyzer;
@@ -40,12 +41,12 @@ public class BuscadorLocal {
 		}
 
 		analyzer = new BrazilianAnalyzer(Version.LUCENE_33);
-
-		is = new IndexSearcher(dir);
 	}
 
 	public ArrayList<LocalTweet> buscaRua(String rua) throws ParseException,
 			IOException {
+
+		is = new IndexSearcher(dir);
 		ArrayList<LocalTweet> mensagens = new ArrayList<LocalTweet>();
 
 		QueryParser qParser = new QueryParser(Version.LUCENE_33, "text",
@@ -62,6 +63,10 @@ public class BuscadorLocal {
 
 			mensagens.add(new LocalTweet(text, fromUser, date));
 		}
+		
+		is.close();
+		
+		Collections.reverse(mensagens);
 
 		return mensagens;
 	}
