@@ -1,17 +1,16 @@
 package transitorj.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.queryParser.ParseException;
 
-import twitter4j.Tweet;
 import transitorj.model.BuscaTweets;
 import transitorj.model.BuscadorLocal;
 import transitorj.model.IndexadorDeTweets;
 import transitorj.model.LocalTweet;
+import twitter4j.Tweet;
 
 public class ControleBusca {
 	
@@ -30,9 +29,6 @@ public class ControleBusca {
 			buscadorLocal = new BuscadorLocal(
 					"C:/Users/Gabriel/Desktop/Gabriel/Faculdade/RecInfo/Workspace/recinfo-gabi-igor");
 			System.out.println("Criado buscador.");
-
-			mensagens = buscaTweets.buscaTodos();
-			System.out.println("Tweets buscados.");
 
 			indexados = indexador.indexa(mensagens);
 			System.out.println("Tweets indexados: " + indexados);
@@ -60,12 +56,13 @@ public class ControleBusca {
 	}
 	
 	public String[] buscaEntrada(String nomeRua) {
-		String[] vetor = new String[30];
-		
+		String[] vetor = null;
 		List<LocalTweet> lista;
 		try {
 			lista = buscadorLocal.buscaRua(nomeRua);
-			for(int i = 0; i < lista.size(); i++) {
+			int tam = lista.size();
+			vetor = new String[tam+1];
+			for(int i = 0; i < tam; i++) {
 				vetor[i] = i+1 + " - " + lista.get(i).getDate() + " - " + lista.get(i).getText();
 			}
 		} catch (ParseException e) {
