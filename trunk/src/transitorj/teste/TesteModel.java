@@ -29,29 +29,10 @@ public class TesteModel {
 			BuscadorLocal buscadorLocal = new BuscadorLocal(
 					"/home/igorfr/workspace/twitterindex");
 			System.out.println("Criado buscador.");
-
-			List<Tweet> mensagens = buscaTweets.buscaTodos();
-			System.out.println("Tweets buscados.");
-
-			int indexados = indexador.indexa(mensagens);
-			System.out.println("Tweets indexados: " + indexados);
-
-			ArrayList<LocalTweet> resultados = buscadorLocal
-					.buscaRua("linha vermelha");
-			System.out.println("Resultados encontrados: " + resultados.size());
-
-			for (LocalTweet t : resultados) {
-				System.out.println(t.getFromUser() + "\t" + t.getDate());
-				System.out.println(t.getText() + "\n");
-			}
-
 		} catch (CorruptIndexException e) {
 			System.out.println("Problemas no arquivo de índice.");
 		} catch (IOException e) {
 			System.out.println("Erro ao tentar abrir índice.");
-		} catch (ParseException e) {
-			System.out.println("Não foi possível compreender a busca.");
-			e.printStackTrace();
 		}
 	}
 }

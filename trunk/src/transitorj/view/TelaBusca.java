@@ -42,7 +42,7 @@ public class TelaBusca extends JFrame implements ActionListener {
 	public void inicializaComponentes() {
 		// Labels
 		labelRua = new JLabel("Rua:");
-		labelErro = new JLabel();
+		labelErro = new JLabel("Não insira o tipo de logradouro no campo de busca." + '\n' + "Ex: Para buscar Avenida Brasil, digite apenas Brasil");
 		
 		// TextField
 		textRua = new JTextField(30);
@@ -91,9 +91,7 @@ public class TelaBusca extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		if(arg0.getSource() == botaoPesquisar) {			
-			listaTweets.setListData(controleBusca.buscaEntrada(textRua.getText()));
-			
-			
+			listaTweets.setListData(controleBusca.buscaEntrada(textRua.getText()));			
 		}
 	}
 
