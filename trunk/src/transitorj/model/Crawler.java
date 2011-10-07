@@ -16,7 +16,7 @@ public class Crawler extends Thread {
 
 	public Crawler() {
 		last = null;
-		
+
 		try {
 			/*
 			 * indexador = new IndexadorDeTweets(
@@ -39,13 +39,14 @@ public class Crawler extends Thread {
 			while (true) {
 				mensagens = buscaTweets.buscaTodos(last);
 				System.out.println("Tweets buscados.");
-				
+
 				if (mensagens.size() > 0)
-					last = mensagens.get(mensagens.size()-1);
-				
+					last = mensagens.get(mensagens.size() - 1);
+
 				for (Tweet t : mensagens) {
 					System.out.println(t.getCreatedAt());
-					System.out.println(t.getFromUser() + ": " + t.getText() + "\n");
+					System.out.println(t.getFromUser() + ": " + t.getText()
+							+ "\n");
 				}
 
 				indexados = indexador.indexa(mensagens);
