@@ -53,7 +53,7 @@ public class BuscadorLocal {
 				analyzer);
 		rua = "\"" + rua + "\"";
 		Query query = qParser.parse(rua);
-		TopDocs results = is.search(query, 100, new Sort(SortField.FIELD_DOC));
+		TopDocs results = is.search(query, 1000000, new Sort(SortField.FIELD_DOC));
 
 		for (ScoreDoc scoreDoc : results.scoreDocs) {
 			Document doc = is.doc(scoreDoc.doc);
@@ -67,6 +67,10 @@ public class BuscadorLocal {
 		is.close();
 
 		Collections.reverse(mensagens);
+		while (mensagens.size() > 30)
+		{
+			mensagens.remove(30);
+		}
 
 		return mensagens;
 	}
