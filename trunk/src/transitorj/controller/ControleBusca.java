@@ -6,7 +6,6 @@ import java.util.List;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.queryParser.ParseException;
 
-import transitorj.model.BuscaTweets;
 import transitorj.model.BuscadorLocal;
 import transitorj.model.IndexadorDeTweets;
 import transitorj.model.LocalTweet;
@@ -14,7 +13,6 @@ import twitter4j.Tweet;
 
 public class ControleBusca {
 	
-	private BuscaTweets buscaTweets = new BuscaTweets();
 	private IndexadorDeTweets indexador = null;
 	private BuscadorLocal buscadorLocal = null;
 	private List<Tweet> mensagens = null;
@@ -32,17 +30,6 @@ public class ControleBusca {
 
 			indexados = indexador.indexa(mensagens);
 			System.out.println("Tweets indexados: " + indexados);
-
-			/*
-			ArrayList<LocalTweet> resultados = buscadorLocal
-					.buscaRua("linha vermelha");
-			System.out.println("Resultados encontrados: " + resultados.size());
-
-			for (LocalTweet t : resultados) {
-				System.out.println(t.getFromUser() + "\t" + t.getDate());
-				System.out.println(t.getText() + "\n");
-			}
-			*/
 
 		} catch (CorruptIndexException e) {
 			System.out.println("Problemas no arquivo de índice.");
