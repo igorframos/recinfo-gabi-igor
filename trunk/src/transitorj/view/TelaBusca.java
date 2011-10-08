@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import transitorj.controller.ControleBusca;
@@ -25,6 +27,9 @@ public class TelaBusca extends JFrame implements ActionListener {
         JTextField textRua;
         JButton botaoPesquisar;
         JList listaTweets;
+        //JTextArea areaTweets;
+        JScrollPane scrollTweets;
+        
         ControleBusca controleBusca;
         
         public TelaBusca() {
@@ -57,6 +62,11 @@ public class TelaBusca extends JFrame implements ActionListener {
                 
                 // Tweets
                 listaTweets = new JList();
+                scrollTweets = new JScrollPane(listaTweets);
+                
+                // Área Tweets
+                //areaTweets = new JTextArea(20, 40);
+                //scrollTweets = new JScrollPane(areaTweets);
         }
         
         public void carregaUI() {
@@ -88,13 +98,14 @@ public class TelaBusca extends JFrame implements ActionListener {
                 constraint.gridx = 0;
                 constraint.gridy = 5;
                 constraint.gridwidth = 2;
-                conteudo.add(listaTweets, constraint);
+                //conteudo.add(listaTweets, constraint);
+                conteudo.add(scrollTweets, constraint);
         }
 
         @Override
         public void actionPerformed(ActionEvent arg0) {
                 if(arg0.getSource() == botaoPesquisar) {                        
-                        listaTweets.setListData(controleBusca.buscaEntrada(textRua.getText()));                 
+                    listaTweets.setListData(controleBusca.buscaEntrada(textRua.getText()));                 
                 }
         }
 
