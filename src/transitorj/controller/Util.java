@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 public class Util {
 
 	public static Date getDateFromTwitterString(String str) {
-		DateFormat df = new SimpleDateFormat("EEE MMM dd HH:mm:ss YYYY", Locale.US);
+		DateFormat df = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.US);
 		
 		Date data = null;
 		try {

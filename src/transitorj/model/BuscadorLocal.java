@@ -66,11 +66,12 @@ public class BuscadorLocal {
 
 		is.close();
 
-		Collections.reverse(mensagens);
-		while (mensagens.size() > 30)
-		{
-			mensagens.remove(30);
-		}
+
+		Collections.sort(mensagens, new CompareByDate());
+//		while (mensagens.size() > 30)
+//		{
+//			mensagens.remove(30);
+//		}
 
 		return mensagens;
 	}

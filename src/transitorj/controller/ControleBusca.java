@@ -12,24 +12,24 @@ import transitorj.model.LocalTweet;
 import twitter4j.Tweet;
 
 public class ControleBusca {
-	
-	private IndexadorDeTweets indexador = null;
+
 	private BuscadorLocal buscadorLocal = null;
-	private List<Tweet> mensagens = null;
-	private int indexados;
-	
+
 	public ControleBusca() {
 		try {
-			indexador = new IndexadorDeTweets(
-					"C:/Users/Gabriel/Desktop/Gabriel/Faculdade/RecInfo/Workspace/recinfo-gabi-igor");
-			System.out.println("Criado índice.");
+			/*
+			 * indexador = new IndexadorDeTweets(
+			 * "C:/Users/Gabriel/Desktop/Gabriel/Faculdade/RecInfo/Workspace/recinfo-gabi-igor"
+			 * ); System.out.println("Criado índice.");
+			 * 
+			 * buscadorLocal = new BuscadorLocal(
+			 * "C:/Users/Gabriel/Desktop/Gabriel/Faculdade/RecInfo/Workspace/recinfo-gabi-igor"
+			 * ); System.out.println("Criado buscador.");
+			 */
 
 			buscadorLocal = new BuscadorLocal(
-					"C:/Users/Gabriel/Desktop/Gabriel/Faculdade/RecInfo/Workspace/recinfo-gabi-igor");
+					"/home/igorfr/workspace/twitterindex");
 			System.out.println("Criado buscador.");
-
-			indexados = indexador.indexa(mensagens);
-			System.out.println("Tweets indexados: " + indexados);
 
 		} catch (CorruptIndexException e) {
 			System.out.println("Problemas no arquivo de índice.");
@@ -37,27 +37,28 @@ public class ControleBusca {
 			System.out.println("Erro ao tentar abrir índice.");
 		}
 	}
-	
+
 	public List<Tweet> trataEntrada(String nomeRua) {
 		return null;
 	}
-	
+
 	public String[] buscaEntrada(String nomeRua) {
 		String[] vetor = null;
 		List<LocalTweet> lista;
 		try {
 			lista = buscadorLocal.buscaRua(nomeRua);
 			int tam = lista.size();
-			vetor = new String[tam+1];
-			for(int i = 0; i < tam; i++) {
-				vetor[i] = i+1 + " - " + lista.get(i).getDate() + " - " + lista.get(i).getText();
+			vetor = new String[tam + 1];
+			for (int i = 0; i < tam; i++) {
+				vetor[i] = i + 1 + " - " + lista.get(i).getDate() + " - "
+						+ lista.get(i).getText();
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return vetor;
 	}
 }
