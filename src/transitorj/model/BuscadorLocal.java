@@ -5,7 +5,9 @@ package transitorj.model;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -37,6 +39,10 @@ public class BuscadorLocal {
 			dir = FSDirectory.open(f);
 		} catch (IOException e) {
 			System.out.println("Caminho inválido.");
+			Calendar c = Calendar.getInstance();
+			SimpleDateFormat df = new SimpleDateFormat(
+					"dd/mm/yyyy HH:mm:ss zzz");
+			System.out.println(df.format(c.getTime()));
 			throw e;
 		}
 
@@ -53,7 +59,8 @@ public class BuscadorLocal {
 				analyzer);
 		rua = "\"" + rua + "\"";
 		Query query = qParser.parse(rua);
-		TopDocs results = is.search(query, 1000000, new Sort(SortField.FIELD_DOC));
+		TopDocs results = is.search(query, 1000000, new Sort(
+				SortField.FIELD_DOC));
 
 		for (ScoreDoc scoreDoc : results.scoreDocs) {
 			Document doc = is.doc(scoreDoc.doc);
@@ -66,12 +73,7 @@ public class BuscadorLocal {
 
 		is.close();
 
-
 		Collections.sort(mensagens, new CompareByDate());
-//		while (mensagens.size() > 30)
-//		{
-//			mensagens.remove(30);
-//		}
 
 		return mensagens;
 	}
