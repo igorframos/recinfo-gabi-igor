@@ -1,6 +1,8 @@
 package transitorj.model;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import twitter4j.Tweet;
@@ -59,6 +61,11 @@ public class Crawler extends Thread {
 				e.printStackTrace();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
+			} finally {
+				Calendar c = Calendar.getInstance();
+				SimpleDateFormat df = new SimpleDateFormat(
+						"dd/mm/yyyy HH:mm:ss zzz");
+				System.out.println(df.format(c.getTime()));
 			}
 		}
 	}

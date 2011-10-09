@@ -1,13 +1,14 @@
 package transitorj.controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.queryParser.ParseException;
 
 import transitorj.model.BuscadorLocal;
-import transitorj.model.IndexadorDeTweets;
 import transitorj.model.LocalTweet;
 import twitter4j.Tweet;
 
@@ -18,10 +19,6 @@ public class ControleBusca {
 	public ControleBusca() {
 		try {
 			/*
-			 * indexador = new IndexadorDeTweets(
-			 * "C:/Users/Gabriel/Desktop/Gabriel/Faculdade/RecInfo/Workspace/recinfo-gabi-igor"
-			 * ); System.out.println("Criado índice.");
-			 * 
 			 * buscadorLocal = new BuscadorLocal(
 			 * "C:/Users/Gabriel/Desktop/Gabriel/Faculdade/RecInfo/Workspace/recinfo-gabi-igor"
 			 * ); System.out.println("Criado buscador.");
@@ -33,8 +30,16 @@ public class ControleBusca {
 
 		} catch (CorruptIndexException e) {
 			System.out.println("Problemas no arquivo de índice.");
+			Calendar c = Calendar.getInstance();
+			SimpleDateFormat df = new SimpleDateFormat(
+					"dd/mm/yyyy HH:mm:ss zzz");
+			System.out.println(df.format(c.getTime()));
 		} catch (IOException e) {
 			System.out.println("Erro ao tentar abrir índice.");
+			Calendar c = Calendar.getInstance();
+			SimpleDateFormat df = new SimpleDateFormat(
+					"dd/mm/yyyy HH:mm:ss zzz");
+			System.out.println(df.format(c.getTime()));
 		}
 	}
 

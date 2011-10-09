@@ -1,6 +1,7 @@
 package transitorj.model;
 
-import java.util.Collections;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import twitter4j.GeoLocation;
@@ -19,7 +20,7 @@ public class BuscaTweets {
 	public static final GeoLocation RJ = new GeoLocation(-22.899106, -43.208714);
 	private static final String OPT = "trânsito OR tráfego OR engarrafamento OR "
 			+ "lentidão OR fluxo OR obra OR interdita OR interditada OR "
-			+ "interdição OR faixa OR colisão OR acidente OR engarrafado OR "
+			+ "interdição OR colisão OR acidente OR engarrafado OR "
 			+ "engarrafada OR retenção OR engavetamento";
 
 	public BuscaTweets() {
@@ -47,6 +48,10 @@ public class BuscaTweets {
 			resultados = queryResult.getTweets();
 		} catch (TwitterException e) {
 			e.printStackTrace();
+			Calendar c = Calendar.getInstance();
+			SimpleDateFormat df = new SimpleDateFormat(
+					"dd/mm/yyyy HH:mm:ss zzz");
+			System.out.println(df.format(c.getTime()));
 		}
 
 		return resultados;
