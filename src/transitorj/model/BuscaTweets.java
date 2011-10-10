@@ -21,7 +21,8 @@ public class BuscaTweets {
 	private static final String OPT = "trânsito OR tráfego OR engarrafamento OR "
 			+ "lentidão OR fluxo OR obra OR interdita OR interditada OR "
 			+ "interdição OR colisão OR acidente OR engarrafado OR "
-			+ "engarrafada OR retenção OR engavetamento";
+			+ "engarrafada OR retenção OR engavetamento OR congestionamento OR "
+			+ "congestionada";
 
 	public BuscaTweets() {
 		twitter = new TwitterFactory().getInstance();
