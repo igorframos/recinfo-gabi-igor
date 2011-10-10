@@ -27,7 +27,7 @@ public class Crawler extends Thread {
 			 */
 
 			indexador = new IndexadorDeTweets(
-					"/home/igorfr/workspace/twitterindex");
+					"/home/igorfr/Dropbox/workspace/TrânsitoRJ/twitterindex");
 			System.out.println("Criado índice.");
 
 		} catch (IOException e) {
@@ -44,7 +44,7 @@ public class Crawler extends Thread {
 					System.out.println("Tweets buscados.");
 
 					if (mensagens.size() > 0)
-						last = mensagens.get(mensagens.size() - 1);
+						last = mensagens.get(0);
 
 					for (Tweet t : mensagens) {
 						System.out.println(t.getCreatedAt());
@@ -66,6 +66,12 @@ public class Crawler extends Thread {
 				SimpleDateFormat df = new SimpleDateFormat(
 						"dd/mm/yyyy HH:mm:ss zzz");
 				System.out.println(df.format(c.getTime()));
+
+				try {
+					Thread.sleep(SLEEP_TIME);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

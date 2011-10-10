@@ -25,7 +25,7 @@ public class ControleBusca {
 			 */
 
 			buscadorLocal = new BuscadorLocal(
-					"/home/igorfr/workspace/twitterindex");
+					"/home/igorfr/Dropbox/workspace/TrânsitoRJ/twitterindex");
 			System.out.println("Criado buscador.");
 
 		} catch (CorruptIndexException e) {
