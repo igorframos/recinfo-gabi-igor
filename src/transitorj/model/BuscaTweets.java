@@ -19,7 +19,7 @@ public class BuscaTweets {
 	public static final int RAIO = 30;
 	public static final GeoLocation RJ = new GeoLocation(-22.899106, -43.208714);
 	private static final String OPT = "trânsito OR tráfego OR engarrafamento OR "
-			+ "lentidão OR fluxo OR obra OR interdita OR interditada OR "
+			+ "lentidão OR fluxo OR interdita OR interditada OR "
 			+ "interdição OR colisão OR acidente OR engarrafado OR "
 			+ "engarrafada OR retenção OR engavetamento OR congestionamento OR "
 			+ "congestionada";
