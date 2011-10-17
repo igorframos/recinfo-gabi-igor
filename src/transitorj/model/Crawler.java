@@ -20,14 +20,9 @@ public class Crawler extends Thread {
 		last = null;
 
 		try {
-			/*
-			 * indexador = new IndexadorDeTweets(
-			 * "C:/Users/Gabriel/Desktop/Gabriel/Faculdade/RecInfo/Workspace/recinfo-gabi-igor"
-			 * ); System.out.println("Criado índice.");
-			 */
 
 			indexador = new IndexadorDeTweets(
-					"/home/igorfr/Dropbox/workspace/TrânsitoRJ/twitterindex");
+					".");
 			System.out.println("Criado índice.");
 
 		} catch (IOException e) {
@@ -72,6 +67,8 @@ public class Crawler extends Thread {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				
+				run();
 			}
 		}
 	}

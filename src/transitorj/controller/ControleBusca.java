@@ -18,14 +18,8 @@ public class ControleBusca {
 
 	public ControleBusca() {
 		try {
-			/*
-			 * buscadorLocal = new BuscadorLocal(
-			 * "C:/Users/Gabriel/Desktop/Gabriel/Faculdade/RecInfo/Workspace/recinfo-gabi-igor"
-			 * ); System.out.println("Criado buscador.");
-			 */
-
 			buscadorLocal = new BuscadorLocal(
-					"/home/igorfr/Dropbox/workspace/TrânsitoRJ/twitterindex");
+					".");
 			System.out.println("Criado buscador.");
 
 		} catch (CorruptIndexException e) {
@@ -53,10 +47,10 @@ public class ControleBusca {
 		try {
 			lista = buscadorLocal.buscaRua(nomeRua);
 			int tam = lista.size();
-			vetor = new String[tam + 1];
+			vetor = new String[2*tam + 4];
 			for (int i = 0; i < tam; i++) {
-				vetor[i] = i + 1 + " - " + lista.get(i).getDate() + " - "
-						+ lista.get(i).getText();
+				vetor[2*i] = i + 1 + " - " + lista.get(i).getDate() + " - " + lista.get(i).getFromUser();
+				vetor[2*i+1] = "\t" + lista.get(i).getText();
 			}
 		} catch (ParseException e) {
 			e.printStackTrace();
