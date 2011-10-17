@@ -8,7 +8,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.TreeSet;
 
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.br.BrazilianAnalyzer;
@@ -31,9 +32,11 @@ public class BuscadorLocal {
 	private FSDirectory dir;
 	private Analyzer analyzer;
 	private IndexSearcher is;
+	private HashMap<String,String> mapa;
 
 	public BuscadorLocal(String path) throws CorruptIndexException, IOException {
 		f = new File(path);
+		criaMapa();
 
 		try {
 			dir = FSDirectory.open(f);
@@ -54,10 +57,11 @@ public class BuscadorLocal {
 
 		is = new IndexSearcher(dir);
 		ArrayList<LocalTweet> mensagens = new ArrayList<LocalTweet>();
+		TreeSet<LocalTweet> mensagensSet = new TreeSet<LocalTweet>();
 
 		QueryParser qParser = new QueryParser(Version.LUCENE_33, "text",
 				analyzer);
-		rua = "\"" + rua + "\"";
+		rua = ajuste(rua);
 		Query query = qParser.parse(rua);
 		TopDocs results = is.search(query, 1000000, new Sort(
 				SortField.FIELD_DOC));
@@ -68,13 +72,52 @@ public class BuscadorLocal {
 			String fromUser = doc.get("fromUser");
 			String date = doc.get("date");
 
-			mensagens.add(new LocalTweet(text, fromUser, date));
+			mensagensSet.add(new LocalTweet(text, fromUser, date));
 		}
 
 		is.close();
 
-		Collections.sort(mensagens, new CompareByDate());
+		mensagens.addAll(mensagensSet);
 
 		return mensagens;
+	}
+	
+	String ajuste(String rua) {
+		if (mapa.containsKey(rua)) {
+			return mapa.get(rua);
+		}
+		
+		String ans = "\"" + rua + "\"";
+		
+		if (rua.contains(" ")) {
+			String[] v = rua.split(" ");
+			ans += " OR ";
+			for (String s : v) {
+				ans += s;
+			}
+		}
+		
+		return ans;
+	}
+	
+	void criaMapa() {
+		mapa = new HashMap<String, String>();
+		
+		mapa.put("vermelha", "vermelha OR linhavermelha OR LV");
+		mapa.put("linha vermelha", "vermelha OR linhavermelha OR LV");
+		mapa.put("amarela", "amarela OR linhaamarela OR LA");
+		mapa.put("linha amarela", "amarela OR linhaamarela OR LA");
+		mapa.put("brasil", "brasil OR br OR avbrasil OR avenidabrasil");
+		mapa.put("copacabana", "copacabana OR copa");
+		mapa.put("américas", "américas OR avamericas");
+		mapa.put("botafogo", "botafogo OR btfg");
+		mapa.put("ayrton sena","\"ayrton senna\" OR \"ayrton sena\" OR ayrtonsenna OR ayrtonsena");
+		mapa.put("ayrton senna","\"ayrton senna\" OR \"ayrton sena\" OR ayrtonsenna OR ayrtonsena");
+		mapa.put("ponte", "ponte OR \"ponte rio niterói\" OR \"sentido rio\" OR \"sentido niterói\" OR rioniteroi");
+		mapa.put("rio-niterói", "ponte OR \"ponte rio niterói\" OR \"sentido rio\" OR \"sentido niterói\" OR rioniteroi");
+		mapa.put("rio niterói", "ponte OR \"ponte rio niterói\" OR \"sentido rio\" OR \"sentido niterói\" OR rioniteroi");
+		mapa.put("rio-niteroi", "ponte OR \"ponte rio niterói\" OR \"sentido rio\" OR \"sentido niterói\" OR rioniteroi");
+		mapa.put("rio niteroi", "ponte OR \"ponte rio niterói\" OR \"sentido rio\" OR \"sentido niterói\" OR rioniteroi");
+		mapa.put("tijuca", "tijuca -barra");
 	}
 }
