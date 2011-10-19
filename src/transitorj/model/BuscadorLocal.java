@@ -83,6 +83,8 @@ public class BuscadorLocal {
 	}
 	
 	String ajuste(String rua) {
+		rua = rua.toLowerCase();
+		System.out.println(rua);
 		if (mapa.containsKey(rua)) {
 			return mapa.get(rua);
 		}
