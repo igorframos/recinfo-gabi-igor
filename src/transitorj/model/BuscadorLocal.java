@@ -63,7 +63,7 @@ public class BuscadorLocal {
 				analyzer);
 		rua = ajuste(rua);
 		Query query = qParser.parse(rua);
-		TopDocs results = is.search(query, 1000000, new Sort(
+		TopDocs results = is.search(query, is.maxDoc(), new Sort(
 				SortField.FIELD_DOC));
 
 		for (ScoreDoc scoreDoc : results.scoreDocs) {
